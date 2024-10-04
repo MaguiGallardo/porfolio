@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Artístico</title>
+    <title>Portfolio Magali Gallardo</title>
     <style>
         /* Estilos Generales */
         body {
@@ -36,6 +36,7 @@
             list-style: none;
             display: flex;
             gap: 20px;
+            margin-right: 50px;
         }
 
         .navbar ul li {
@@ -51,7 +52,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background-image: url('https://via.placeholder.com/1920x1080');
+            background-color: #111;
             background-size: cover;
             background-position: center;
             position: relative;
@@ -141,17 +142,24 @@
 
         .carousel-inner {
             display: flex;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease-in-out;
         }
 
         .carousel-item {
             min-width: 100%;
-            transition: transform 0.5s ease;
+            transition: transform 0.5s ease-in-out;
+            opacity: 0;
+            visibility: hidden;
+        }
+
+        .carousel-item.active {
+            opacity: 1;
+            visibility: visible;
         }
 
         .carousel-item img {
             width: 100%;
-            height: 400px;
+            height: 100%;
             object-fit: cover;
             border: 5px solid #c9a227;
         }
@@ -257,13 +265,15 @@
         <div class="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <img src="https://via.placeholder.com/800x400" alt="Proyecto 1">
+                    <a href="https://miro.com/app/board/uXjVNR-sWCg=/?share_link_id=960432757507" target="_blank">
+                        <img src="Captura de pantalla 2024-10-04 160007.png" alt="Proyecto 1">
+                    </a>
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/800x400" alt="Proyecto 2">
+                    <img src="Captura de pantalla 2024-10-04 155433.png" alt="Proyecto 2">
                 </div>
                 <div class="carousel-item">
-                    <img src="https://via.placeholder.com/800x400" alt="Proyecto 3">
+                    <img src="Captura de pantalla 2024-10-04 155809.png" alt="Proyecto 3">
                 </div>
             </div>
             <div class="carousel-controls">
@@ -293,23 +303,27 @@
     <script>
         let currentSlide = 0;
         const slides = document.querySelectorAll('.carousel-item');
-        
+
         function showSlide(index) {
             slides.forEach((slide, i) => {
-                slide.style.transform = `translateX(${(i - index) * 100}%)`;
+                slide.classList.remove('active'); // Elimina la clase active de todos
+                if (i === index) {
+                    slide.classList.add('active'); // Añade la clase active a la diapositiva actual
+                }
             });
         }
 
         function nextSlide() {
-            currentSlide = (currentSlide + 1) % slides.length;
+            currentSlide = (currentSlide + 1) % slides.length; // Avanza al siguiente slide
             showSlide(currentSlide);
         }
 
         function prevSlide() {
-            currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+            currentSlide = (currentSlide - 1 + slides.length) % slides.length; // Retrocede al slide anterior
             showSlide(currentSlide);
         }
 
+        // Inicializar mostrando la primera diapositiva
         showSlide(currentSlide);
     </script>
 </body>
